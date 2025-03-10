@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   file_picker: ^9.0.2
   path_provider: ^2.1.5
+  get: ^4.7.2
+  pie_chart: ^5.4.0
+  disk_space: ^0.2.1
+  syncfusion_flutter_charts: ^28.2.9
+  flutter_charts: ^0.5.2
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-import 'package:ddas/screen/home.dart';
+import 'package:ddas/screen/Nav.screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: Nav(),
     );
   }
 }
