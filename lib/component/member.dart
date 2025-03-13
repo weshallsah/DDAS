@@ -1,22 +1,29 @@
+import 'package:ddas/controller/about.controller.dart';
 import 'package:flutter/material.dart';
 
 class MemberInfo extends StatelessWidget {
-  const MemberInfo({super.key});
+  Pair pair;
+  MemberInfo({super.key, required this.pair});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(
+        vertical: 5,
+        horizontal: 10,
+      ),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.grey,
         ),
-        // borderRadius: BorderRadius.circular(5),
-        image: const DecorationImage(
-            image: AssetImage(
-              "./assets/team/Vishal Sah.png",
-            ),
-            fit: BoxFit.fill),
+        image: DecorationImage(
+          image: AssetImage(
+            pair.isexist
+                ? "./assets/team/${pair.name}.png"
+                : "./assets/team/profileimg.png",
+          ),
+          fit: BoxFit.fill,
+        ),
       ),
       alignment: Alignment.bottomCenter,
       child: Column(
@@ -26,19 +33,20 @@ class MemberInfo extends StatelessWidget {
             margin: EdgeInsets.only(
               bottom: 5,
             ),
-            width: 140,
+            width: 145,
             padding: EdgeInsets.only(bottom: 3),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Stack(
               children: [
                 Container(
                   alignment: Alignment.topCenter,
-                  child: const Text(
-                    "Vishal Sah",
+                  child: Text(
+                    pair.name,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.black,
@@ -49,8 +57,8 @@ class MemberInfo extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 14),
                   alignment: Alignment.topCenter,
-                  child: const Text(
-                    "Founder & CEO",
+                  child: Text(
+                    pair.designation,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black,

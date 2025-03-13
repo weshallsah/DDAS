@@ -1,8 +1,12 @@
 import 'package:ddas/component/member.dart';
+import 'package:ddas/controller/about.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({super.key});
+  AboutScreen({super.key});
+
+  AboutController aboutController = Get.put(AboutController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,8 @@ class AboutScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                  wordSpacing: 5,
+                  // fontWeight: FontWeight.w500,
+                  wordSpacing: 2,
                 ),
               ),
             ),
@@ -46,29 +50,40 @@ class AboutScreen extends StatelessWidget {
                 "Meet our team",
                 style: TextStyle(
                   fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             SizedBox(
               height: 10,
             ),
+            Text(
+              "Meet our diverse team of world-class creators, designers, and problem solvers.",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
-            Container(
-              width: 525,
-              alignment: Alignment.center,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                itemCount: 6,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return MemberInfo();
-                },
-              ),
-            )
+            GetBuilder<AboutController>(builder: (controller) {
+              return Container(
+                width: 525,
+                alignment: Alignment.center,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3),
+                  itemCount: controller.names.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return MemberInfo(
+                      pair: controller.names[index],
+                    );
+                  },
+                ),
+              );
+            })
           ],
         ),
       ),
