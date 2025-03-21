@@ -53,23 +53,22 @@ class SideInfo extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {},
+                hoverColor: Colors.blueGrey,
+                enableFeedback: true,
+                borderRadius: BorderRadius.circular(25),
                 child: Container(
-                  margin: EdgeInsets.only(
-                    right: 20,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 10,
-                  ),
+                  height: 30,
+                  width: 80,
+                  margin: EdgeInsets.all(1),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10),
+                    // color: Colors.amber,
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(25),
                   ),
-                  child: Text(
-                    "Start",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
+                  alignment: Alignment.center,
+                  child: Text("Start"),
                 ),
               ),
             ],

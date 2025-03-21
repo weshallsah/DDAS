@@ -17,12 +17,16 @@ class Nav extends StatelessWidget {
           child: Image.asset("./assets/png/database.png"),
         ),
         titleSpacing: 0,
-        title: const Text(
-          "DDAS",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: GetBuilder<NavController>(builder: (controller) {
+          return Obx(
+            () => Text(
+              controller.selection.value == 2 ? "" : "DDAS",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
+        }),
         toolbarHeight: 60,
         actions: [
           GetBuilder<NavController>(

@@ -2,12 +2,12 @@ import 'package:get/get.dart';
 
 class AboutController extends GetxController {
   RxList<Pair> names = [
-    Pair("Vishal Sah", "Founder & CEO", true),
-    Pair("Vipul Soni", "Founder & CEO", false),
-    Pair("Shruti Vishwakarma", "Founder & CEO", false),
-    Pair("Zoya Ansari", "Founder & CEO", false),
-    Pair("Rimple Kosta", "Founder & CEO", false),
-    Pair("Tanishka Dutta", "Founder & CEO", false),
+    Pair("Vishal Sah", "Front-End & UI", true),
+    Pair("Vipul Soni", "UI & UX", true),
+    Pair("Shruti Vishwakarma", "Back-End", false),
+    Pair("Zoya Ansari", "Designer", false),
+    Pair("Rimple Kosta", "Researcher", false),
+    Pair("Tanishka Dutta", "Researcher", false),
   ].obs;
 }
 

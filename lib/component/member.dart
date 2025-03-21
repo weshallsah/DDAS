@@ -32,8 +32,10 @@ class MemberInfo extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(
               bottom: 5,
+              left: 3,
+              right: 3
             ),
-            width: 145,
+            // width: 145,
             padding: EdgeInsets.only(bottom: 3),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -55,7 +57,7 @@ class MemberInfo extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 14),
+                  margin: EdgeInsets.only(top: 15),
                   alignment: Alignment.topCenter,
                   child: Text(
                     pair.designation,

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NavController extends GetxController {
-  
-
   List<String> actionName = [
     "DashBord",
     "Scan",

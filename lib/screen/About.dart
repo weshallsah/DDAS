@@ -67,20 +67,26 @@ class AboutScreen extends StatelessWidget {
               height: 10,
             ),
             GetBuilder<AboutController>(builder: (controller) {
-              return Container(
-                width: 525,
-                alignment: Alignment.center,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
-                  itemCount: controller.names.length,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return MemberInfo(
-                      pair: controller.names[index],
-                    );
-                  },
+              return Obx(
+                () => Container(
+                  width: 525,
+                  alignment: Alignment.center,
+                  child: GridView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 5,
+                    ),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3),
+                    itemCount: controller.names.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return MemberInfo(
+                        pair: controller.names[index],
+                      );
+                    },
+                  ),
                 ),
               );
             })
