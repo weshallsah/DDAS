@@ -80,7 +80,46 @@ class ScanScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        color: Colors.amber,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              child: Text(
+                                                "Original File's",
+                                                style: TextStyle(
+                                                  fontSize: 22,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                child: ListView.builder(
+                                                  itemCount: controller
+                                                      .directory.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        vertical: 2,
+                                                        horizontal: 5,
+                                                      ),
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Text(
+                                                        "${controller.directory[index]}",
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -88,7 +127,46 @@ class ScanScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        color: Colors.teal,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              child: Text(
+                                                "Duplicate File's",
+                                                style: TextStyle(
+                                                  fontSize: 22,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                child: ListView.builder(
+                                                  itemCount:
+                                                      controller.files.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        vertical: 2,
+                                                        horizontal: 5,
+                                                      ),
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Text(
+                                                        "${controller.files[index]}",
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     SizedBox(

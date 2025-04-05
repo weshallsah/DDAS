@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           GetBuilder<HomeController>(
             builder: (controller) => SideInfo(
-              Info: controller.info,
+              homeController: controller,
             ),
           ),
           Expanded(
@@ -186,61 +186,122 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Alert's",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            ),
+                      child: GetBuilder<HomeController>(builder: (controller) {
+                        return Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Alert's",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: ListView.builder(
+                                    itemCount: 2,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 20,
+                                          vertical: 10,
+                                        ),
+                                        margin: EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 5,
+                                        ),
+                                        decoration: BoxDecoration(
+                                            border:
+                                                Border.all(color: Colors.white),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: Colors.black),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Alert notification ${index + 1}",
+                                                ),
+                                                Obx(
+                                                  () => ElevatedButton(
+                                                    style: const ButtonStyle(
+                                                      backgroundColor:
+                                                          WidgetStatePropertyAll(
+                                                              Colors.blue),
+                                                      foregroundColor:
+                                                          WidgetStatePropertyAll(
+                                                              Colors.white),
+                                                    ),
+                                                    onPressed: () {
+                                                      if (controller.isresolve
+                                                              .value ==
+                                                          index + 1) {
+                                                        controller.isresolve
+                                                            .value = 0;
+                                                      } else {
+                                                        controller.isresolve
+                                                            .value = index + 1;
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                      controller.isresolve
+                                                                  .value !=
+                                                              index + 1
+                                                          ? "Resolve"
+                                                          : "Close",
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Obx(
+                                              () => controller
+                                                          .isresolve.value ==
+                                                      index + 1
+                                                  ? Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: 20,
+                                                        vertical: 2,
+                                                      ),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Duplicat File is detected",
+                                                          ),
+                                                          Text(
+                                                            "Old File location is D:/File/vishal/TextFile.txt",
+                                                          ),
+                                                          Text(
+                                                            "New File location is D:/File/vishal/TextFile.txt",
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  : Container(),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
-                          ListView.builder(
-                            itemCount: 2,
-                            physics: NeverScrollableScrollPhysics(),
-                            // scrollDirection: Axis.,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 10,
-                                ),
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 5,
-                                ),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Colors.black),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Alert notification 1",
-                                    ),
-                                    ElevatedButton(
-                                      style: const ButtonStyle(
-                                        backgroundColor:
-                                            WidgetStatePropertyAll(Colors.blue),
-                                        foregroundColor: WidgetStatePropertyAll(
-                                            Colors.white),
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "Resolve",
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          )
-                        ],
-                      ),
+                        );
+                      }),
                     ),
                   ),
                 ],

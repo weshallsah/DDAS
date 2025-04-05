@@ -12,11 +12,15 @@ class HomeController extends GetxController {
     "Security & Access"
   ].obs;
 
+  RxBool isenable = false.obs;
+  RxInt isresolve = 0.obs;
+
   RxMap dataMap = {
-    "Flutter": 5.0,
-    "React": 3.0,
-    "Xamarin": 2.0,
-    "Ionic": 2.0,
+    "Video": 5.0,
+    "Audio": 3.0,
+    "Document": 2.0,
+    "Image": 2.0,
+    "Free": 4.0
   }.obs;
 
   late List<ChartData> data;
@@ -29,11 +33,11 @@ class HomeController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     data = [
-      ChartData('CHN', 12, 13),
-      ChartData('GER', 15, 18),
-      ChartData('RUS', 30, 12),
-      ChartData('BRZ', 6.4, 10),
-      ChartData('IND', 14, 20)
+      ChartData('Video', 12, 13),
+      ChartData('Audio', 15, 18),
+      ChartData('Document', 30, 12),
+      ChartData('Image', 6.4, 10),
+      // ChartData('IND', 14, 20)
     ];
     tooltip = TooltipBehavior(enable: true);
     isChartLoaded.value = true;

@@ -1,8 +1,10 @@
+import 'package:ddas/controller/home.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SideInfo extends StatelessWidget {
-  List Info;
-  SideInfo({super.key, required this.Info});
+  HomeController homeController;
+  SideInfo({super.key, required this.homeController});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class SideInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListView.builder(
-                itemCount: Info.length,
+                itemCount: homeController.info.length,
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -32,7 +34,9 @@ class SideInfo extends StatelessWidget {
                       horizontal: index == 0 ? 0 : 5,
                     ),
                     child: Text(
-                      index == 0 ? Info[index] : " -${Info[index]}",
+                      index == 0
+                          ? homeController.info[index]
+                          : " -${homeController.info[index]}",
                       style: TextStyle(
                         fontSize: index == 0 ? 20 : 16,
                         fontWeight:
@@ -51,26 +55,35 @@ class SideInfo extends StatelessWidget {
               Text(
                 "Background process",
               ),
-              InkWell(
-                onTap: () {},
-                hoverColor: Colors.blueGrey,
-                enableFeedback: true,
-                borderRadius: BorderRadius.circular(25),
-                child: Container(
-                  height: 30,
-                  width: 80,
-                  margin: EdgeInsets.all(1),
-                  decoration: BoxDecoration(
-                    // color: Colors.amber,
-                    border: Border.all(
-                      color: Colors.white,
+              GetBuilder<HomeController>(builder: (controller) {
+                return InkWell(
+                  onTap: () {
+                    controller.isenable.value = !controller.isenable.value;
+                    print(controller.isenable);
+                  },
+                  hoverColor: Colors.blueGrey,
+                  enableFeedback: true,
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    height: 30,
+                    width: 80,
+                    margin: EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      // color: Colors.green,
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(25),
                     ),
-                    borderRadius: BorderRadius.circular(25),
+                    alignment: Alignment.center,
+                    child: Obx(
+                      () => !controller.isenable.value
+                          ? Text("Enable")
+                          : Text("Disable"),
+                    ),
                   ),
-                  alignment: Alignment.center,
-                  child: Text("Start"),
-                ),
-              ),
+                );
+              }),
             ],
           )
         ],

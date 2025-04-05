@@ -8,14 +8,21 @@ class ScanController extends GetxController {
   RxBool isscaning = false.obs;
 
   String currentPath = "D:";
-  List<FileSystemEntity> files = [];
-  List<String> private = ["Recovery", "Windows"];
+  RxList files = [].obs;
+  RxList directory = [].obs;
+  List<String> private = [
+    "Recovery",
+    "Windows",
+    "System Volume Information",
+    "games",
+    "System",
+  ];
 
   void ScanClicked() async {
     isscaned.value = true;
-
+    isscaning.value = true;
+    await Future.delayed(Duration(milliseconds: 100));
     _listDir(currentPath);
-
     isscaning.value = false;
   }
 
@@ -23,11 +30,14 @@ class ScanController extends GetxController {
     try {
       var dir = Directory(path);
       var children = dir.listSync();
-      List<FileSystemEntity> directory=[];
-      while (children.isNotEmpty) {
+      // int idx=0;
+      files.value = [];
+      directory.value = [];
+      for (var el in children) {
+        // print(idx);
         bool iscontain = false;
         for (var pvt in private) {
-          if (children[0].path.contains(pvt)) {
+          if (el.path.contains(pvt)) {
             iscontain = true;
             break;
           }
@@ -35,16 +45,16 @@ class ScanController extends GetxController {
         if (iscontain) {
           continue;
         }
-        if (children[0].path.contains('.')) {
-          files.add(children[0]);
+        if (el.path.contains('.')) {
+          files.add(el);
         } else {
-          dir = Directory(children[0].path);
-          print("Directory");
+          dir = Directory(el.path);
+          // print("Directory");
           directory.addAll(dir.listSync());
         }
-        children.remove(children[0]);
       }
-      print(files);
+      // print(files);
+      // print(directory);
     } catch (e) {
       print('Error reading directory: $e');
     }
