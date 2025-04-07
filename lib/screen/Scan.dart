@@ -12,28 +12,28 @@ class ScanScreen extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          Container(
-            height: 50,
-            width: 700,
-            margin: const EdgeInsets.symmetric(
-              vertical: 20,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white),
-              borderRadius: BorderRadius.circular(25),
-            ),
-            alignment: Alignment.center,
-            child: const TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Search File",
-                helperStyle: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-            ),
-          ),
+          // Container(
+          //   height: 50,
+          //   width: 700,
+          //   margin: const EdgeInsets.symmetric(
+          //     vertical: 20,
+          //   ),
+          //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+          //   decoration: BoxDecoration(
+          //     border: Border.all(color: Colors.white),
+          //     borderRadius: BorderRadius.circular(25),
+          //   ),
+          //   alignment: Alignment.center,
+          //   child: const TextField(
+          //     decoration: InputDecoration(
+          //       border: InputBorder.none,
+          //       hintText: "Search File",
+          //       helperStyle: TextStyle(
+          //         fontSize: 30,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           GetBuilder<ScanController>(builder: (controller) {
             return Obx(
               () => !controller.isscaned.value
@@ -103,15 +103,40 @@ class ScanScreen extends StatelessWidget {
                                                   itemBuilder:
                                                       (context, index) {
                                                     return Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 4,
+                                                              horizontal: 5),
                                                       padding:
                                                           EdgeInsets.symmetric(
                                                         vertical: 2,
                                                         horizontal: 5,
                                                       ),
-                                                      decoration:
-                                                          BoxDecoration(),
-                                                      child: Text(
-                                                        "${controller.directory[index]}",
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.white),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5)),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "File Path:= ${controller.directory[index][1]}",
+                                                          ),
+                                                          Text(
+                                                            "File Path:= ${controller.directory[index][2]}",
+                                                          ),
+                                                          Text(
+                                                            "CreateAT:= ${controller.directory[index][4]}",
+                                                          ),
+                                                          Text(
+                                                            "HashCode:= ${controller.directory[index][6]}",
+                                                          ),
+                                                        ],
                                                       ),
                                                     );
                                                   },
@@ -150,15 +175,40 @@ class ScanScreen extends StatelessWidget {
                                                   itemBuilder:
                                                       (context, index) {
                                                     return Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 4,
+                                                              horizontal: 5),
                                                       padding:
                                                           EdgeInsets.symmetric(
                                                         vertical: 2,
                                                         horizontal: 5,
                                                       ),
-                                                      decoration:
-                                                          BoxDecoration(),
-                                                      child: Text(
-                                                        "${controller.files[index]}",
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.white),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5)),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "File Path:= ${controller.directory[controller.files[index]][1]}",
+                                                          ),
+                                                          Text(
+                                                            "File Path:= ${controller.directory[controller.files[index]][2]}",
+                                                          ),
+                                                          Text(
+                                                            "CreateAT:= ${controller.directory[controller.files[index]][4]}",
+                                                          ),
+                                                          Text(
+                                                            "HashCode:= ${controller.directory[controller.files[index]][6]}",
+                                                          ),
+                                                        ],
                                                       ),
                                                     );
                                                   },

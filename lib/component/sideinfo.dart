@@ -58,8 +58,7 @@ class SideInfo extends StatelessWidget {
               GetBuilder<HomeController>(builder: (controller) {
                 return InkWell(
                   onTap: () {
-                    controller.isenable.value = !controller.isenable.value;
-                    print(controller.isenable);
+                    controller.backgroundprocess();
                   },
                   hoverColor: Colors.blueGrey,
                   enableFeedback: true,

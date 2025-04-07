@@ -1,3 +1,4 @@
+import 'package:ddas/service/dartpython.dart';
 import 'package:ddas/util/chartdata.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -41,5 +42,15 @@ class HomeController extends GetxController {
     ];
     tooltip = TooltipBehavior(enable: true);
     isChartLoaded.value = true;
+  }
+
+  void backgroundprocess() {
+    if (isenable.value) {
+      DarttoPython().Stopmoniter();
+    } else {
+      DarttoPython().Startmoniter();
+    }
+    isenable.value = !isenable.value;
+    print(isenable);
   }
 }
