@@ -22,6 +22,7 @@ class ScanController extends GetxController {
   void DeleteFile(int id, String path) async {
     final result = await DarttoPython().deleteFile(id, path);
     print(result);
+    Info.value = [];
     Original.value = {};
     hashcodes.value = [];
     for (var el in result) {
@@ -30,7 +31,7 @@ class ScanController extends GetxController {
         Original[el[6]]!.add(el);
       } else {
         Original[el[6]] = [el];
-        hashcodes.value.add(el[6]);
+        hashcodes.add(el[6]);
       }
     }
     print(Original);
@@ -69,37 +70,5 @@ class ScanController extends GetxController {
         suffixes[i];
   }
 
-  // void _listDir(String path) async {
-  //   try {
-  //     var dir = Directory(path);
-  //     var children = dir.listSync();
-  //     // int idx=0;
-  //     files.value = [];
-  //     directory.value = [];
-  //     for (var el in children) {
-  //       // print(idx);
-  //       bool iscontain = false;
-  //       for (var pvt in private) {
-  //         if (el.path.contains(pvt)) {
-  //           iscontain = true;
-  //           break;
-  //         }
-  //       }
-  //       if (iscontain) {
-  //         continue;
-  //       }
-  //       if (el.path.contains('.')) {
-  //         files.add(el);
-  //       } else {
-  //         dir = Directory(el.path);
-  //         // print("Directory");
-  //         directory.addAll(dir.listSync());
-  //       }
-  //     }
-  //     // print(files);
-  //     // print(directory);
-  //   } catch (e) {
-  //     print('Error reading directory: $e');
-  //   }
-  // }
+  
 }

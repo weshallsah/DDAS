@@ -28,10 +28,15 @@ class DarttoPython {
   }
 
   Future deleteFile(int id, String path) async {
-    final res = await http.delete(Uri.parse("${url}delete"), body: {
-      "id": id.toString(),
-      "path": path,
-    });
+    final Map<String, dynamic> body = {
+      'id': id,
+      'path': path,
+    };
+    final res = await http.delete(
+      Uri.parse("${url}delete/${id}"),
+      body: jsonEncode(body),
+    );
+    // print(res.body);
     return jsonDecode(res.body);
   }
 }
