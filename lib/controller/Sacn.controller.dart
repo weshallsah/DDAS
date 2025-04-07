@@ -9,35 +9,64 @@ class ScanController extends GetxController {
   RxBool isscaning = false.obs;
 
   String currentPath = "D:";
-  RxList files = [].obs;
-  RxList directory = [].obs;
-  // List<String> private = [
-  //   "Recovery",
-  //   "Windows",
-  //   "System Volume Information",
-  //   "games",
-  //   "System",
-  // ];
+  RxList hashcodes = [].obs;
+  RxMap Original = {}.obs;
+  RxList Info = [].obs;
+
+  void openFile(String path, String filename) {
+    final splitstr = path.split("\\" + filename);
+    print(splitstr.first);
+    Process.start('explorer', [splitstr.first]);
+  }
+
+  void DeleteFile(int id, String path) async {
+    final result = await DarttoPython().deleteFile(id, path);
+    print(result);
+    Original.value = {};
+    hashcodes.value = [];
+    for (var el in result) {
+      print(el[6]);
+      if (Original.containsKey(el[6])) {
+        Original[el[6]]!.add(el);
+      } else {
+        Original[el[6]] = [el];
+        hashcodes.value.add(el[6]);
+      }
+    }
+    print(Original);
+  }
 
   void ScanClicked() async {
     isscaned.value = true;
     isscaning.value = true;
-    Map Original = {};
-    await Future.delayed(Duration(milliseconds: 100));
+
+    // await Future.delayed(Duration(milliseconds: 100));
     final result = await DarttoPython().scan();
-    int idx=0;
+    Original.value = {};
+    hashcodes.value = [];
     for (var el in result) {
-      if(Original.containsKey(el[6])){
-        files.add(idx);
+      print(el[6]);
+      if (Original.containsKey(el[6])) {
+        Original[el[6]]!.add(el);
+      } else {
+        Original[el[6]] = [el];
+        hashcodes.value.add(el[6]);
       }
-      else{
-        Original[el[6]]=true;
-      }
-      idx++;
     }
-    // print(Original);
-    directory.value = result;
+    print(Original);
     isscaning.value = false;
+  }
+
+  String getFileSizeString({required int bytes, int decimals = 0}) {
+    const suffixes = ["byte", "kb", "mb", "gb", "tb"];
+    if (bytes == 0) {
+      return "0 ${suffixes[0]}";
+    }
+    int i = (log(bytes) / log(1024)).toInt();
+
+    return ((bytes / pow(1024, i)).toStringAsFixed(decimals)) +
+        " " +
+        suffixes[i];
   }
 
   // void _listDir(String path) async {
@@ -73,5 +102,4 @@ class ScanController extends GetxController {
   //     print('Error reading directory: $e');
   //   }
   // }
-
 }

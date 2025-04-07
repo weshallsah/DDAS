@@ -1,3 +1,6 @@
+import 'package:ddas/component/listview.dart';
+import 'package:ddas/component/scanleft.dart';
+import 'package:ddas/component/scanright.dart';
 import 'package:ddas/controller/Sacn.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,144 +82,23 @@ class ScanScreen extends StatelessWidget {
                                       width: 20,
                                     ),
                                     Expanded(
-                                      child: Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              child: Text(
-                                                "Original File's",
-                                                style: TextStyle(
-                                                  fontSize: 22,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                child: ListView.builder(
-                                                  itemCount: controller
-                                                      .directory.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return Container(
-                                                      margin:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 4,
-                                                              horizontal: 5),
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        vertical: 2,
-                                                        horizontal: 5,
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.white),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5)),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "File Path:= ${controller.directory[index][1]}",
-                                                          ),
-                                                          Text(
-                                                            "File Path:= ${controller.directory[index][2]}",
-                                                          ),
-                                                          Text(
-                                                            "CreateAT:= ${controller.directory[index][4]}",
-                                                          ),
-                                                          Text(
-                                                            "HashCode:= ${controller.directory[index][6]}",
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 20,
+                                        flex: 2,
+                                        child: ScanLeftPanel(
+                                            controller: controller)),
+                                    Container(
+                                      width: 5,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 15),
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                        left: BorderSide(color: Colors.white),
+                                        right: BorderSide(color: Colors.white),
+                                      )),
                                     ),
                                     Expanded(
-                                      child: Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              child: Text(
-                                                "Duplicate File's",
-                                                style: TextStyle(
-                                                  fontSize: 22,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                child: ListView.builder(
-                                                  itemCount:
-                                                      controller.files.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return Container(
-                                                      margin:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 4,
-                                                              horizontal: 5),
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        vertical: 2,
-                                                        horizontal: 5,
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.white),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5)),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "File Path:= ${controller.directory[controller.files[index]][1]}",
-                                                          ),
-                                                          Text(
-                                                            "File Path:= ${controller.directory[controller.files[index]][2]}",
-                                                          ),
-                                                          Text(
-                                                            "CreateAT:= ${controller.directory[controller.files[index]][4]}",
-                                                          ),
-                                                          Text(
-                                                            "HashCode:= ${controller.directory[controller.files[index]][6]}",
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                      flex: 1,
+                                      child: ScanRightPanel(
+                                        controller: controller,
                                       ),
                                     ),
                                     SizedBox(
@@ -225,6 +107,7 @@ class ScanScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
+                              // refresh button
                               Container(
                                 margin: EdgeInsets.all(5),
                                 child: InkWell(

@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:ddas/service/dartpython.dart';
 import 'package:ddas/util/chartdata.dart';
+import 'package:disk_space/disk_space.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeController extends GetxController {
